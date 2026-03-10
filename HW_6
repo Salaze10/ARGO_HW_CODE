@@ -39,3 +39,16 @@ Vmax = ; % s/s bus voltage [V]
 
 Vm = ; % Voltage margins [V]
 Am = ; %SP area margins [m^2]
+
+
+% Power Calc
+
+Ee = Pl * te; % Energy required furing longest eclipse cycle [W-hr]
+
+NBs = ceil(Vmax/Vb); % Number of batteries in series [#]
+
+NBp = ceil(Ee/(DODc * NBs * Vb * Vc)); % Number of batteries in parallel % Number of batteries in parallel [#]
+
+EB = NBs * NBp * Vb * Vc; % Total energy of Batteries [W-hr]
+
+DODt = Ee/EB * 100; % True depth of discharge [%]
