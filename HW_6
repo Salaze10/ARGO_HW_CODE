@@ -1,1 +1,7 @@
-
+%%% --- HOMEWORK 6 REQS --- %
+% A. The maximum eclipse cycle [appropriate time unit, e.g., minutes]
+% B. The shortest day cycle [appropriate time unit, e.g., minutes]
+% C. The solar panel array design area [m2]
+% D. The preliminary total EPS mass [kg]
+% E. The power flux due to solar radiation at aphelion [W/m2]
+% F. The power produced by the solar array [W] as a function of time (plot; use human-readable units for both axes)
