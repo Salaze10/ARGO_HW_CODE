@@ -34,7 +34,7 @@ Lyr = ; % Degradation rate for SP
 % Orbital Characteristics
 
 te = ; % Longest eclipse cycle [hr]
-ts = ; % shortestday cycle [hr]
+ts = ; % shortest day cycle [hr]
 Pl = ; % peak power [W]
 Vmax = ; % s/s bus voltage [V]
 yr = ; % years of mission [yr]
