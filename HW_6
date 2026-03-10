@@ -13,11 +13,29 @@
 
 % Preliminary Power Budget
 
-% Batteries [B] collected from traed study
-DODc = ; %Depth of disrcharge [%]
+% Batteries (B) collected from trade study
+
+DODc = ; % Depth of disrcharge [%]
 Cb = ; % Nominal Capacity [A-hr]
 Vb = ; % Average voltage [V]
 Mb = ; % Mass [kg]
 nub = ; % Recharge efficeny [0-1]
 
-%
+% Solar Pannel (SP) collected from trade study
+
+Csp = ; % Nominal Current [A]
+Vsp = ; % Voltage [V]
+alphasp = ; % Absorptivity [0-1]
+nusp = ; % Efficeny [0-1]
+Msp = ; % Mass [kg]
+Asp = ; % Area per panel [m^2]
+
+% Orbital Characteristics
+
+te = ; % Longest eclipse cycle [hr]
+ts = ; % shortestday cycle [hr]
+Pl = ; % peak power [W]
+Vmax = ; % s/s bus voltage [V]
+
+Vm = ; % Voltage margins [V]
+Am = ; %SP area margins [m^2]
