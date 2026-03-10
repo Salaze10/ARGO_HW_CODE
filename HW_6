@@ -80,6 +80,7 @@ v_p_MCI = [0; v_p; 0];                  % Velocity Vector [vx, vy, vz] (km/s)
 % ----------------------
 % Propagate Orbit
 % ----------------------
+
 % Define time vector for Spacecraft
 t_total = seconds(end1 - start1);           % Total Duration in Seconds
 dt_sc   = 60;                               % Time step: 60 Seconds
@@ -115,9 +116,11 @@ for i = 1:length(t_vec)
     % Store in matrix
     r_sc_mars(i, :) = [x_orbit, y_orbit, z_orbit];
 end
+
 % ----------------------
 % Plotting to Verify (3D)
 % ----------------------
+
 figure('Color', 'w');
 hold on;
 grid on;
