@@ -325,7 +325,7 @@ fprintf('Solar power flux at aphelion: %.4f W/m^2\n', qs);
 
 % Final area sizing using decimal efficiency
 Asa = Psa/(dsp * alphasp * nusp * qs); % SP area required [m^2]
-fprintf('Solar panel area required: %.4f m^2\n', Asa);
+fprintf('Total solar panel area required: %.4f m^2\n', Asa);
 
 % Sizing strings based on Vmp (Working Voltage)
 NSPs = ceil(Vmax / Vsp); 
