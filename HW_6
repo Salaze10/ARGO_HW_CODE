@@ -223,15 +223,15 @@ fprintf('--- EPS Inputs ---\n');
 
 % Batteries (B) collected from trade study
 
-DODc = ; % Depth of disrcharge [%]
+DODc = 0.8; % Depth of disrcharge [%]
 fprintf('Depth of discharge: %.2f%%\n', DODc*100);
-Cb = ; % Nominal Capacity [A-hr]
+Cb = 200; % Nominal Capacity [A-hr]
 fprintf('Nominal Capacity: %.2f A-hr\n', Cb);
-Vb = ; % Average voltage [V]
+Vb = 3.6; % Average voltage [V]
 fprintf('Average voltage: %.2f V\n', Vb);
 Mb = ; % Mass [kg]
 fprintf('Battery mass: %.2f kg\n', Mb);
-nub = ; % Recharge efficeny [0-1]
+nub = 0.99; % Recharge efficeny [0-1]
 fprintf('Recharge efficiency: %.2f\n', nub);
 
 % Solar Pannel (SP) collected from trade study
