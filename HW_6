@@ -236,9 +236,9 @@ fprintf('Recharge efficiency: %.2f\n', nub);
 
 % Solar Pannel (SP) collected from trade study
 
-Csp = ; % Nominal Current [A]
+Csp = 174; % Nominal Current [A]
 fprintf('Nominal Current: %.2f A\n', Csp);
-Vsp = ; % Voltage [V]
+Vsp = 2.726; % Voltage [V]
 fprintf('Solar panel voltage: %.2f V\n', Vsp);
 alphasp = ; % Absorptivity [0-1]
 fprintf('Absorptivity: %.2f\n', alphasp);
@@ -255,9 +255,9 @@ fprintf('Degradation rate: %.4f\n', Lyr);
 
 Pl = 60000; % peak power [W]
 fprintf('Peak power: %.2f W\n', Pl);
-Vmax = ; % s/s bus voltage [V]
+Vmax = 120; % s/s bus voltage [V]
 fprintf('Bus voltage: %.2f V\n', Vmax);
-yr = ; % years of mission [yr]
+yr = 30; % years of mission [yr]
 fprintf('Mission duration: %.2f years\n', yr);
 Vm = ; % Voltage margins [V]
 fprintf('Voltage margin: %.2f V\n', Vm);
