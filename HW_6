@@ -218,41 +218,37 @@ grid on
 % ----------------------
 % EPS
 % ----------------------
-
 fprintf('\n--- EPS Inputs ---\n');
 
 % Batteries (B) collected from trade study
-
-DODc = 0.5; % Depth of disrcharge [%]
+DODc = 0.8; % Depth of disrcharge [%]
 fprintf('Depth of discharge: %.2f%%\n', DODc*100);
 Cb = 200; % Nominal Capacity [A-hr]
 fprintf('Nominal Capacity: %.2f A-hr\n', Cb);
-SpecEnergy = 200; % [Wh/kg]
-fprintf('Specific Energy: %.2f Wh/kg\n', SpecEnergy);
-Vb = 3.7; % Average voltage [V]
+Vb = 3.6; % Average voltage [V]
 fprintf('Average voltage: %.2f V\n', Vb);
-nub = 0.90; % Recharge efficiency [0-1]
+Mb = 100; % Mass [kg]
+fprintf('Battery mass: %.2f kg\n', Mb);
+nub = 0.99; % Recharge efficeny [0-1]
 fprintf('Recharge efficiency: %.2f\n', nub);
 
-% Solar Panel (SP) collected from trade study
-
-Csp = 6487; % Nominal Current [A]
-fprintf('Nominal Current: %.2f A\n', Csp);
-Vsp = 2.726; % Voltage [V]
-fprintf('Solar panel voltage: %.2f V\n', Vsp);
+% Solar Pannel (SP) updated with datasheet and mass density
+% 84 mg/cm^2 = 0.84 kg/m^2. We apply a 2.0x factor for panel structure/harness.
+MassDensity_SP = 0.84 * 2.0; 
+Vsp = 2.41; % Using Vmp (Voltage at Maximum Power) from datasheet [V]
+fprintf('Solar panel voltage (Vmp): %.2f V\n', Vsp);
 alphasp = 0.90; % Absorptivity [0-1]
 fprintf('Absorptivity: %.2f\n', alphasp);
-nusp = 0.295; % Efficacy [0-1]
+nusp = 0.295; % Efficiency as decimal (29.5% from BOL)
 fprintf('Solar panel efficiency: %.2f\n', nusp);
-Msp = 31.31; % Mass per panel [kg]
-fprintf('Solar panel mass: %.2f kg\n', Msp);
 Asp = 37.3/4; % Area per panel [m^2]
 fprintf('Area per panel: %.4f m^2\n', Asp);
-Lyr = .005; % Degradation rate for SP
+Msp = MassDensity_SP * Asp; % Derived mass per panel [kg]
+fprintf('Solar panel mass per panel: %.2f kg\n', Msp);
+Lyr = .005; % Adjusted degradation rate (0.5% standard for these cells)
 fprintf('Degradation rate: %.4f\n', Lyr);
 
 % Other Inputs
-
 Pl = 60000; % peak power [W]
 fprintf('Peak power: %.2f W\n', Pl);
 Vmax = 120; % s/s bus voltage [V]
@@ -265,7 +261,6 @@ Am = Asp * 0.1; % SP area margins %10 of Asp [m^2]
 fprintf('Solar panel area margin: %.4f m^2\n', Am);
 
 % Orbital Characteristics
-
 % Calculate longest eclipse - ai assisted
 in_eclipse = S_percent == 0;
 diff_eclipse = diff([0; in_eclipse; 0]);
@@ -294,16 +289,14 @@ rscsa = max_dist * 10^3;
 fprintf('S/C distance from Sun at aphelion: %.2f m (%.4f AU)\n', max_dist * 10^3, max_dist/149597870.7);
 
 % Power Calc
-
 fprintf('\n--- EPS Calculations ---\n');
-
 Ee = Pl * te; % Energy required furing longest eclipse cycle [W-hr]
 fprintf('Energy required during longest eclipse cycle: %.2f W-hr\n', Ee);
 
 NBs = ceil(Vmax/Vb); % Number of batteries in series [#]
 fprintf('Number of batteries in series: %d\n', NBs);
 
-NBp = ceil(Ee/(DODc * NBs * Vb * Cb)); % Number of batteries in parallel % Number of batteries in parallel [#]
+NBp = ceil(Ee/(DODc * NBs * Vb * Cb)); % Number of batteries in parallel [#]
 fprintf('Number of batteries in parallel: %d\n', NBp);
 
 EB = NBs * NBp * Vb * Cb; % Total energy of Batteries [W-hr]
@@ -330,10 +323,12 @@ fprintf('True depth of discharge: %.2f%%\n', DODt);
 qs = (3.84440561265196 * 10^26)/(4*pi*(rscsa)^2); % Power flux from Sun at aphelion [W/m^2]
 fprintf('Solar power flux at aphelion: %.4f W/m^2\n', qs);
 
+% Final area sizing using decimal efficiency
 Asa = Psa/(dsp * alphasp * nusp * qs); % SP area required [m^2]
 fprintf('Solar panel area required: %.4f m^2\n', Asa);
 
-NSPs = ceil(((1 + (Vm/Vb)) * NBs * Vb)/Vsp); % Number of SP in series [#]
+% Sizing strings based on Vmp (Working Voltage)
+NSPs = ceil(Vmax / Vsp); 
 fprintf('Number of solar panels in series: %d\n', NSPs);
 
 NSPp = ceil(Asa/((1 - (Am/Asa)) * NSPs * Asp)); % Number of SP in parallel [#]
@@ -344,9 +339,6 @@ fprintf('Solar panel design area (final): %.4f m^2\n', AsaD);
 
 Asam = (AsaD - Asa)/ AsaD * 100; % True SP design margin [%]
 fprintf('True solar panel design margin: %.2f%%\n', Asam);
-
-Mb = (Ee/DODc) / SpecEnergy; % Mass [kg]
-fprintf('Battery mass: %.2f kg\n', Mb);
 
 Mesp = NBs * NBp * Mb + NSPs * NSPp * Msp; % Total EPS mass [kg]
 fprintf('Total EPS mass: %.2f kg\n', Mesp);
@@ -488,4 +480,3 @@ function [r_vec, v_vec] = get_jpl_horizons(body_id, t_start, t_end)
         r_vec = [C{3}, C{4}, C{5}];
         v_vec = [C{6}, C{7}, C{8}];
 end
-
