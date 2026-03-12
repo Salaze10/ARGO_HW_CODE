@@ -223,18 +223,18 @@ fprintf('\n--- EPS Inputs ---\n');
 
 % Batteries (B) collected from trade study
 
-DODc = 0.8; % Depth of disrcharge [%]
+DODc = 0.5; % Depth of disrcharge [%]
 fprintf('Depth of discharge: %.2f%%\n', DODc*100);
 Cb = 200; % Nominal Capacity [A-hr]
 fprintf('Nominal Capacity: %.2f A-hr\n', Cb);
-Vb = 3.6; % Average voltage [V]
+Vb = 3.7; % Average voltage [V]
 fprintf('Average voltage: %.2f V\n', Vb);
-Mb = 100; % Mass [kg]
+Mb = .5; % Mass per cell [kg]
 fprintf('Battery mass: %.2f kg\n', Mb);
-nub = 0.99; % Recharge efficeny [0-1]
+nub = 0.90; % Recharge efficiency [0-1]
 fprintf('Recharge efficiency: %.2f\n', nub);
 
-% Solar Pannel (SP) collected from trade study
+% Solar Panel (SP) collected from trade study
 
 Csp = 6487; % Nominal Current [A]
 fprintf('Nominal Current: %.2f A\n', Csp);
@@ -244,7 +244,7 @@ alphasp = 0.90; % Absorptivity [0-1]
 fprintf('Absorptivity: %.2f\n', alphasp);
 nusp = 0.295; % Efficacy [0-1]
 fprintf('Solar panel efficiency: %.2f\n', nusp);
-Msp = 31.31; % Mass [kg]
+Msp = 31.31; % Mass per panel [kg]
 fprintf('Solar panel mass: %.2f kg\n', Msp);
 Asp = 37.3/4; % Area per panel [m^2]
 fprintf('Area per panel: %.4f m^2\n', Asp);
