@@ -227,10 +227,10 @@ DODc = 0.5; % Depth of disrcharge [%]
 fprintf('Depth of discharge: %.2f%%\n', DODc*100);
 Cb = 200; % Nominal Capacity [A-hr]
 fprintf('Nominal Capacity: %.2f A-hr\n', Cb);
+SpecEnergy = 200; % [Wh/kg]
+fprintf('Specific Energy: %.2f Wh/kg\n', SpecEnergy);
 Vb = 3.7; % Average voltage [V]
 fprintf('Average voltage: %.2f V\n', Vb);
-Mb = .5; % Mass per cell [kg]
-fprintf('Battery mass: %.2f kg\n', Mb);
 nub = 0.90; % Recharge efficiency [0-1]
 fprintf('Recharge efficiency: %.2f\n', nub);
 
@@ -344,6 +344,9 @@ fprintf('Solar panel design area (final): %.4f m^2\n', AsaD);
 
 Asam = (AsaD - Asa)/ AsaD * 100; % True SP design margin [%]
 fprintf('True solar panel design margin: %.2f%%\n', Asam);
+
+Mb = (Ee/DODc) / SpecEnergy; % Mass [kg]
+fprintf('Battery mass: %.2f kg\n', Mb);
 
 Mesp = NBs * NBp * Mb + NSPs * NSPp * Msp; % Total EPS mass [kg]
 fprintf('Total EPS mass: %.2f kg\n', Mesp);
