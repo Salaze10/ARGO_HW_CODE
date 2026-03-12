@@ -244,9 +244,9 @@ alphasp = ; % Absorptivity [0-1]
 fprintf('Absorptivity: %.2f\n', alphasp);
 nusp = 29.5; % Efficeny [0-1]
 fprintf('Solar panel efficiency: %.2f\n', nusp);
-Msp = ; % Mass [kg]
+Msp = 26.33; % Mass [kg]
 fprintf('Solar panel mass: %.2f kg\n', Msp);
-Asp = ; % Area per panel [m^2]
+Asp = 31.34; % Area per panel [m^2]
 fprintf('Area per panel: %.4f m^2\n', Asp);
 Lyr = ; % Degradation rate for SP
 fprintf('Degradation rate: %.4f\n', Lyr);
