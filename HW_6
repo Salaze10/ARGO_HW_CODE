@@ -236,19 +236,19 @@ fprintf('Recharge efficiency: %.2f\n', nub);
 
 % Solar Pannel (SP) collected from trade study
 
-Csp = 174; % Nominal Current [A]
+Csp = 6487; % Nominal Current [A]
 fprintf('Nominal Current: %.2f A\n', Csp);
 Vsp = 2.726; % Voltage [V]
 fprintf('Solar panel voltage: %.2f V\n', Vsp);
-alphasp = ; % Absorptivity [0-1]
+alphasp = 0.90; % Absorptivity [0-1]
 fprintf('Absorptivity: %.2f\n', alphasp);
-nusp = 29.5; % Efficeny [0-1]
+nusp = 29.5; % Efficency [0-1]
 fprintf('Solar panel efficiency: %.2f\n', nusp);
-Msp = 26.33; % Mass [kg]
+Msp = 31.31; % Mass [kg]
 fprintf('Solar panel mass: %.2f kg\n', Msp);
-Asp = 31.34; % Area per panel [m^2]
+Asp = 37.3; % Area per panel [m^2]
 fprintf('Area per panel: %.4f m^2\n', Asp);
-Lyr = ; % Degradation rate for SP
+Lyr = .01; % Degradation rate for SP
 fprintf('Degradation rate: %.4f\n', Lyr);
 
 % Other Inputs
