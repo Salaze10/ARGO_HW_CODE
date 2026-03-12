@@ -219,7 +219,7 @@ grid on
 % EPS
 % ----------------------
 
-fprintf('--- EPS Inputs ---\n');
+fprintf('\n--- EPS Inputs ---\n');
 
 % Batteries (B) collected from trade study
 
@@ -229,7 +229,7 @@ Cb = 200; % Nominal Capacity [A-hr]
 fprintf('Nominal Capacity: %.2f A-hr\n', Cb);
 Vb = 3.6; % Average voltage [V]
 fprintf('Average voltage: %.2f V\n', Vb);
-Mb = ; % Mass [kg]
+Mb = 100; % Mass [kg]
 fprintf('Battery mass: %.2f kg\n', Mb);
 nub = 0.99; % Recharge efficeny [0-1]
 fprintf('Recharge efficiency: %.2f\n', nub);
@@ -246,7 +246,7 @@ nusp = 29.5; % Efficency [0-1]
 fprintf('Solar panel efficiency: %.2f\n', nusp);
 Msp = 31.31; % Mass [kg]
 fprintf('Solar panel mass: %.2f kg\n', Msp);
-Asp = 37.3; % Area per panel [m^2]
+Asp = 37.3/4; % Area per panel [m^2]
 fprintf('Area per panel: %.4f m^2\n', Asp);
 Lyr = .01; % Degradation rate for SP
 fprintf('Degradation rate: %.4f\n', Lyr);
@@ -303,10 +303,10 @@ fprintf('Energy required during longest eclipse cycle: %.2f W-hr\n', Ee);
 NBs = ceil(Vmax/Vb); % Number of batteries in series [#]
 fprintf('Number of batteries in series: %d\n', NBs);
 
-NBp = ceil(Ee/(DODc * NBs * Vb * Vc)); % Number of batteries in parallel % Number of batteries in parallel [#]
+NBp = ceil(Ee/(DODc * NBs * Vb * Cb)); % Number of batteries in parallel % Number of batteries in parallel [#]
 fprintf('Number of batteries in parallel: %d\n', NBp);
 
-EB = NBs * NBp * Vb * Vc; % Total energy of Batteries [W-hr]
+EB = NBs * NBp * Vb * Cb; % Total energy of Batteries [W-hr]
 fprintf('Total energy of batteries: %.2f W-hr\n', EB);
 
 Er = Ee/nub; % Recharge energy [W-hr]
@@ -321,7 +321,7 @@ fprintf('Total energy from solar panels during shortest day cycle: %.2f W-hr\n',
 Psa = Esa/ts; % Total power needed from SP
 fprintf('Total power needed from solar panels: %.2f W\n', Psa);
 
-dsp = (1-Lyr)^yr % SP degradation over the lifetime [#]
+dsp = (1-Lyr)^yr; % SP degradation over the lifetime [#]
 fprintf('Solar panel degradation over mission lifetime: %.4f\n', dsp);
 
 DODt = Ee/EB * 100; % True depth of discharge [%]
@@ -347,6 +347,7 @@ fprintf('True solar panel design margin: %.2f%%\n', Asam);
 
 Mesp = NBs * NBp * Mb + NSPs * NSPp * Msp; % Total EPS mass [kg]
 fprintf('Total EPS mass: %.2f kg\n', Mesp);
+
 
 function S_percent = Scalc(e,alt,R_mars,R_sun,mu_mars, r_mars_vec, gd)
     r_a = R_mars + alt;             % apoapsis radius (km)
@@ -484,3 +485,4 @@ function [r_vec, v_vec] = get_jpl_horizons(body_id, t_start, t_end)
         r_vec = [C{3}, C{4}, C{5}];
         v_vec = [C{6}, C{7}, C{8}];
 end
+
