@@ -327,7 +327,7 @@ fprintf('Solar panel degradation over mission lifetime: %.4f\n', dsp);
 DODt = Ee/EB * 100; % True depth of discharge [%]
 fprintf('True depth of discharge: %.2f%%\n', DODt);
 
-qs = (3.06158303309403 * 10^25)/(rscsa)^2; % Power flux from Sun at aphelion [W/m^2]
+qs = (3.84440561265196 * 10^26)/(4*pi*(rscsa)^2); % Power flux from Sun at aphelion [W/m^2]
 fprintf('Solar power flux at aphelion: %.4f W/m^2\n', qs);
 
 Asa = Psa/(dsp * alphasp * nusp * qs); % SP area required [m^2]
