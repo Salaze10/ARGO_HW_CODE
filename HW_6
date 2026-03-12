@@ -242,13 +242,13 @@ Vsp = 2.726; % Voltage [V]
 fprintf('Solar panel voltage: %.2f V\n', Vsp);
 alphasp = 0.90; % Absorptivity [0-1]
 fprintf('Absorptivity: %.2f\n', alphasp);
-nusp = 29.5; % Efficency [0-1]
+nusp = 0.295; % Efficacy [0-1]
 fprintf('Solar panel efficiency: %.2f\n', nusp);
 Msp = 31.31; % Mass [kg]
 fprintf('Solar panel mass: %.2f kg\n', Msp);
 Asp = 37.3/4; % Area per panel [m^2]
 fprintf('Area per panel: %.4f m^2\n', Asp);
-Lyr = .01; % Degradation rate for SP
+Lyr = .005; % Degradation rate for SP
 fprintf('Degradation rate: %.4f\n', Lyr);
 
 % Other Inputs
